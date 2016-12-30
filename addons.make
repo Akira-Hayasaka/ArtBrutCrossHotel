@@ -1,0 +1,9 @@
+ofxGui
+ofxOpenCv
+ofxXmlSettings
+addons/ofxCv
+addons/ofxPuppet
+addons/ofxTriangleMesh
+addons/ofxLayer
+addons/ofxTweenzor
+addons/ofxPostGlitch
