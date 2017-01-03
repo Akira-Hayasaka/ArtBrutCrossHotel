@@ -56,7 +56,7 @@ void ofxPostGlitch::generateFx(){
 			shader[i].setUniformTexture	("image"		,*targetBuffer,0);
 			shader[i].setUniform1i		("trueWidth"	,buffer_size.x);
 			shader[i].setUniform1i		("trueHeight"	,buffer_size.y);
-			shader[i].setUniform1f		("rand"			,ofRandom(1));
+            shader[i].setUniform1f		("rand"			,ofNoise(ofGetElapsedTimef(), 10));
 			shader[i].setUniform1f		("mouseX"		,ofGetMouseX());
 			shader[i].setUniform1f		("mouseY"		,ofGetMouseY());
 			shader[i].setUniform1f		("val1"			,ShadeVal[0]);

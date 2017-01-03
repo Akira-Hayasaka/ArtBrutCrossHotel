@@ -375,35 +375,9 @@ void Deformer::draw(ofVec3f rot)
     if (initState != DONE)
         return;
     
-    if (bMorphing)
-    {
-        if (type == DEFORM)
-        {
-            for (int i = 0; i < morphSeqIdx; i++)
-            {
-                ofPoint p;
-                if (seqPos.x < APP_W/2)
-                    p.x = seqPos.x + Globals::morphSequence.at(i).getWidth() * i;
-                else
-                    p.x = seqPos.x - Globals::morphSequence.at(i).getWidth() * i;
-                p.y = seqPos.y;
-                ofPushStyle();
-                ofSetColor(ofColor::white, bindTexAlpha);
-				Globals::morphSequence.at(i).draw(p.x, p.y);
-                ofNoFill();
-                ofSetColor(ofColor::darkGray, bindTexAlpha);
-                ofDrawRectangle(p, Globals::morphSequence.at(i).getWidth(), Globals::morphSequence.at(i).getHeight());
-                ofPopStyle();
-            }
-        }
-    }
-    
     ofPushMatrix();
     ofSetRectMode(OF_RECTMODE_CENTER);
     ofTranslate(ONESCRN_W/2, ONESCRN_H/2);
-//    ofRotateX(rot.x);
-//    ofRotateY(rot.y);
-//    ofRotateZ(rot.z);
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     screen.draw(0, 0);
