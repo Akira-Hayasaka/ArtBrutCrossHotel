@@ -14,7 +14,6 @@
 namespace Globals
 {
     extern float ELAPSED_TIME;
-	extern vector<ofFbo> morphSequence;
     extern ofTexture testTex;    
     
     // params

@@ -130,8 +130,6 @@ private:
     
     ofVec2f seqPos;
     float lastSeqTime;
-    
-    int morphSeqIdx;
 };
 
 #endif /* Puppet_hpp */

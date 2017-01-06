@@ -7,16 +7,6 @@ void ofApp::setup()
     ofSetVerticalSync(true);
     
     Globals::ELAPSED_TIME = ofGetElapsedTimef();
-    for (int i = 0; i < 10; i++)
-    {
-        ofFbo f;
-        Globals::morphSequence.push_back(f);
-        Globals::morphSequence.back().allocate(ONESCRN_W * MORPH_SEQ_RATIO,
-                                               ONESCRN_H * MORPH_SEQ_RATIO);
-        Globals::morphSequence.back().begin();
-        ofClear(0);
-        Globals::morphSequence.back().end();
-    }
     
     Tweenzor::init();
     

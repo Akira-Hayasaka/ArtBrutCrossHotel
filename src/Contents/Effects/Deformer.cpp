@@ -165,22 +165,6 @@ void Deformer::update()
             puppetWarp.setControlPoint(mp.idx, mp.pts);
         }
         
-        if (type == DEFORM && Globals::ELAPSED_TIME - lastSeqTime > 0.12 &&
-            morphSeqIdx < Globals::morphSequence.size())
-        {
-			Globals::morphSequence.at(morphSeqIdx).begin();
-            ofClear(0);
-            ofPushMatrix();
-            ofScale(MORPH_SEQ_RATIO, MORPH_SEQ_RATIO);
-            texForBinding.getTexture().bind();
-            puppetWarp.getDeformedMesh().draw();
-            texForBinding.getTexture().unbind();
-            ofPopMatrix();
-			Globals::morphSequence.at(morphSeqIdx).end();
-            
-            lastSeqTime = Globals::ELAPSED_TIME;
-            morphSeqIdx++;
-        }
     }
     
     puppetWarp.update();
@@ -198,12 +182,6 @@ void Deformer::update()
         if (Globals::ELAPSED_TIME - startMorphingTime > totalDur)
         {
             ofNotifyEvent(finEvent);
-            for (auto& f : Globals::morphSequence)
-            {
-                f.begin();
-                ofClear(0);
-                f.end();
-            }
             bDone = true;
         }
     }
@@ -246,14 +224,16 @@ void Deformer::update()
             }
             
             ofPushStyle();
-            ofSetColor(ofColor::gray, 255 - bindTexAlpha);
+            ofSetColor(ofColor::black, 255 - bindTexAlpha);
             ofDrawLine(p, p + offset);
             ofDrawCircle(p, 4);
+            ofSetColor(ofColor::white, 255 - bindTexAlpha);
+            ofDrawCircle(p, 2);
             ofPopStyle();
             
             ofPushStyle();
-            ofColor bCol(ofColor::lightGray, 255 - bindTexAlpha);
-            ofColor fCol(ofColor::black, 255 - bindTexAlpha);
+            ofColor bCol(ofColor::black, 255 - bindTexAlpha);
+            ofColor fCol(ofColor::white, 255 - bindTexAlpha);
             ofDrawBitmapStringHighlight(ofToString(p.x), p + offset, bCol, fCol);
             ofPopStyle();
         }
@@ -339,7 +319,7 @@ void Deformer::start()
         Tweenzor::add(&bindTexAlpha, bindTexAlpha, 0.0f, morphDur * 0.9f, 1.0f, EASE_OUT_SINE);
     else if (type == RESTORE)
     {
-        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 255.0f, morphDur * 0.5f, 1.0f, EASE_IN_SINE);
+        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 255.0f, morphDur * 0.7f, 1.0f, EASE_IN_SINE);
         Tweenzor::addCompleteListener(Tweenzor::getTween(&bindTexAlpha), this, &Deformer::onRestoreFinish);
     }
     
@@ -356,18 +336,11 @@ void Deformer::start()
         }
     }
     
-    for (auto& f : Globals::morphSequence)
-    {
-        f.begin();
-        ofClear(0);
-        f.end();
-    }
     startMorphingTime = Globals::ELAPSED_TIME;
     bDone = false;
     bMorphing = true;
     lastSeqTime = startMorphingTime;
     seqPos.set(ofRandom(0, APP_W), ofRandom(ONESCRN_H - 100));
-    morphSeqIdx = 0;
 }
 
 void Deformer::draw(ofVec3f rot)
@@ -377,7 +350,7 @@ void Deformer::draw(ofVec3f rot)
     
     ofPushMatrix();
     ofSetRectMode(OF_RECTMODE_CENTER);
-    ofTranslate(ONESCRN_W/2, ONESCRN_H/2);
+    ofTranslate(ONESCRN_W/2 + 350, ONESCRN_H/2);
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     screen.draw(0, 0);
