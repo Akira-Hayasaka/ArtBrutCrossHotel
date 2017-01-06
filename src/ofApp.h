@@ -14,6 +14,8 @@
 #include "GUI.hpp"
 #include "Deforming.hpp"
 
+#include "Logo.hpp"
+
 class ofApp : public ofBaseApp
 {
 public:
@@ -42,6 +44,8 @@ private:
     
     ofxLayer::Manager lMgmt;
     Deforming* deforming;
+    
+    Logo logo;
     
     // glitch
     ofxPostGlitch glitch;

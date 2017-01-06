@@ -17,6 +17,8 @@ void ofApp::setup()
     lMgmt.setup(APP_W, APP_H);
     deforming = lMgmt.createLayer<Deforming>(1.0);
     
+    logo.setup();
+    
     numMaxRunningGlitch = 1;
     glitch.setFx(OFXPOSTGLITCH_CONVERGENCE, false);
     glitch.setFx(OFXPOSTGLITCH_GLOW, false);
@@ -54,7 +56,7 @@ void ofApp::update()
     gui.update();
     lMgmt.update();
 //    updateGlitch();
-    
+    logo.update();
 }
 
 void ofApp::draw()
@@ -65,6 +67,7 @@ void ofApp::draw()
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     lMgmt.draw();
+    logo.draw();
     glDisable(GL_BLEND);
     ofSetStyle(s);
     

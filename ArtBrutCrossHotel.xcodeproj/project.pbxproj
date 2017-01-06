@@ -66,6 +66,9 @@
 		E98139641E15E24C00AA335E /* Deforming.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E981395F1E15E24C00AA335E /* Deforming.cpp */; settings = {ASSET_TAGS = (); }; };
 		E98139651E15E24C00AA335E /* Deformer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E98139621E15E24C00AA335E /* Deformer.cpp */; settings = {ASSET_TAGS = (); }; };
 		E98139691E15E3BE00AA335E /* GUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E98139671E15E3BE00AA335E /* GUI.cpp */; settings = {ASSET_TAGS = (); }; };
+		E985F9411E1F26030052BD47 /* Ink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F93F1E1F26030052BD47 /* Ink.cpp */; settings = {ASSET_TAGS = (); }; };
+		E985F9441E1F260F0052BD47 /* Logo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F9421E1F260F0052BD47 /* Logo.cpp */; settings = {ASSET_TAGS = (); }; };
+		E985F9471E1F261A0052BD47 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F9451E1F261A0052BD47 /* Particle.cpp */; settings = {ASSET_TAGS = (); }; };
 		F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */; };
 		FAF56D62CD9CC8FC64320442 /* WmlLinearSystemExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB38C1864350FE4A17F18D /* WmlLinearSystemExt.cpp */; };
 		FB09C6B2A1DA0EA217240CB8 /* ofxCvGrayscaleImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 057122A817D12571F8C0C7A4 /* ofxCvGrayscaleImage.cpp */; };
@@ -398,6 +401,12 @@
 		E98139661E15E27200AA335E /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		E98139671E15E3BE00AA335E /* GUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUI.cpp; sourceTree = "<group>"; };
 		E98139681E15E3BE00AA335E /* GUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GUI.hpp; sourceTree = "<group>"; };
+		E985F93F1E1F26030052BD47 /* Ink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ink.cpp; sourceTree = "<group>"; };
+		E985F9401E1F26030052BD47 /* Ink.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ink.hpp; sourceTree = "<group>"; };
+		E985F9421E1F260F0052BD47 /* Logo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logo.cpp; sourceTree = "<group>"; };
+		E985F9431E1F260F0052BD47 /* Logo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Logo.hpp; sourceTree = "<group>"; };
+		E985F9451E1F261A0052BD47 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
+		E985F9461E1F261A0052BD47 /* Particle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Particle.hpp; sourceTree = "<group>"; };
 		EABECCA10B3B22B8DD9090CB /* Helpers.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Helpers.h; path = addons/ofxCv/libs/ofxCv/include/ofxCv/Helpers.h; sourceTree = SOURCE_ROOT; };
 		EBBA82550412B77EFA70AE87 /* funcattrib.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = funcattrib.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/gpu/device/funcattrib.hpp; sourceTree = SOURCE_ROOT; };
 		ECC34C470C60F0A2AE2761B1 /* random.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = random.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/random.h; sourceTree = SOURCE_ROOT; };
@@ -1265,6 +1274,12 @@
 				E981395F1E15E24C00AA335E /* Deforming.cpp */,
 				E98139601E15E24C00AA335E /* Deforming.hpp */,
 				E98139611E15E24C00AA335E /* Effects */,
+				E985F93F1E1F26030052BD47 /* Ink.cpp */,
+				E985F9401E1F26030052BD47 /* Ink.hpp */,
+				E985F9421E1F260F0052BD47 /* Logo.cpp */,
+				E985F9431E1F260F0052BD47 /* Logo.hpp */,
+				E985F9451E1F261A0052BD47 /* Particle.cpp */,
+				E985F9461E1F261A0052BD47 /* Particle.hpp */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -1411,6 +1426,7 @@
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
+				E985F9441E1F260F0052BD47 /* Logo.cpp in Sources */,
 				250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */,
 				1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */,
 				169D3C72FDE6C5590A1616F5 /* ofxCvFloatImage.cpp in Sources */,
@@ -1426,6 +1442,7 @@
 				15DCF11A6445D447A0D48491 /* ETF.cpp in Sources */,
 				6FB779180FB3B27D323336AE /* fdog.cpp in Sources */,
 				68CF26ED86C3C10C45460C0F /* Calibration.cpp in Sources */,
+				E985F9471E1F261A0052BD47 /* Particle.cpp in Sources */,
 				93E2EE8E227D8C12E41C5F73 /* ContourFinder.cpp in Sources */,
 				28E5678DFAF9790F8DC83D29 /* Distance.cpp in Sources */,
 				B5568677EC64043366C79D29 /* Flow.cpp in Sources */,
@@ -1446,6 +1463,7 @@
 				FAF56D62CD9CC8FC64320442 /* WmlLinearSystemExt.cpp in Sources */,
 				9AAEA66B2A535D9E72272D86 /* WmlBandedMatrix.cpp in Sources */,
 				E12352A660BDF39D1D56CC30 /* WmlBox2.cpp in Sources */,
+				E985F9411E1F26030052BD47 /* Ink.cpp in Sources */,
 				33879A37F2849337D62AF238 /* WmlGMatrix.cpp in Sources */,
 				6C96626864EC812020BB506B /* WmlGVector.cpp in Sources */,
 				3674BFDAD59B12515A8CA9CF /* WmlLinearSystem.cpp in Sources */,
