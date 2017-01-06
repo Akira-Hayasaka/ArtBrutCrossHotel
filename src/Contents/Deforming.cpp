@@ -30,6 +30,7 @@ void Deforming::setup()
         }
     }
     
+    ofRandomize(storedPuppets);
     deformTo = storedPuppets.at(getRdmIdx());
     restoreFrom = storedPuppets.at(getRdmIdx());
     
@@ -42,6 +43,7 @@ void Deforming::setup()
     deformTo->start();
     restoreFrom->start();
     bDeforming = true;
+    puppetIdx = 0;
     ofAddListener(restoreFrom->finEvent, this, &Deforming::onFinishEvent);
 }
 
@@ -73,42 +75,18 @@ void Deforming::update()
 
 void Deforming::draw()
 {
-	//ofPushStyle();
-	//ofSetColor(ofColor::cyan);
-	//ofDrawRectangle(0, 0, APP_W, APP_H);
-	//ofPopStyle();
-
     deformTo->draw(rot);
     restoreFrom->draw(rot);
 }
 
 int Deforming::getRdmIdx()
 {
-    if (imageHistory.size() > 100)
-        imageHistory.pop_front();
+    if (puppetIdx >= masterDir.size())
+        puppetIdx = 0;
     
-    if (imageHistory.empty())
-    {
-        int rdm = ofRandom(masterDir.size());
-        imageHistory.push_back(rdm);
-        return rdm;
-    }
-    else
-    {
-        int lastImg = imageHistory.back();
-        int nextImg = 0;
-        
-        // try 10 time
-        for (int i = 0; i < 10; i++)
-        {
-            nextImg = ofRandom(masterDir.size());
-            if (nextImg != lastImg)
-            {
-                imageHistory.push_back(nextImg);
-                return nextImg;
-            }
-        }
-    }
+    int rtn = puppetIdx;
+    puppetIdx++;
+    return rtn;
 }
 
 void Deforming::checkDeformBegin()

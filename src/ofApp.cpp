@@ -97,7 +97,7 @@ void ofApp::keyPressed(int key)
     }
     if (key == 'c')
     {
-        ink.clear();
+        ink.fadeOut();
     }
     if (key == 't')
     {

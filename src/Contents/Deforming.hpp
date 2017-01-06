@@ -45,7 +45,9 @@ private:
     float lastDeformTime;
     float deformInterval;
     
-    ofVec3f rot;    
+    ofVec3f rot;
+    
+    int puppetIdx;
 };
 
 #endif /* Deforming_hpp */
