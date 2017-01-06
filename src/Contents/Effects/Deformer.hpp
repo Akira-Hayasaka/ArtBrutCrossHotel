@@ -90,6 +90,9 @@ private:
     void makeCentroidMovePath();
     float getNearestVertex(const ofMesh& mesh, const ofVec2f& target, int& vertexIndex);    
     void onRestoreFinish(float* arg);
+    void drawIntoBindingTex();
+    void drawDeformingTex();
+    void drawDeformingEffects();
     
     enum TYPE
     {
