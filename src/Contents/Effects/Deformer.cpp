@@ -188,7 +188,7 @@ void Deformer::update()
     texForBinding.begin();
     ofClear(0);
     ofPushStyle();
-    ofSetColor(ofColor::white, bindTexAlpha);
+    ofSetColor(ofColor::black, bindTexAlpha);
     tex.draw(0, 0);
     ofPopStyle();
     texForBinding.end();
@@ -217,7 +217,7 @@ void Deformer::update()
     if (type == RESTORE)
     {
         ofPushStyle();
-        ofSetColor(ofColor::white, (255 - bindTexAlpha) * 0.6);
+        ofSetColor(ofColor::black, 255 - bindTexAlpha);
         puppetWarp.getDeformedMesh().drawWireframe();
         ofPopStyle();
         
@@ -252,8 +252,8 @@ void Deformer::update()
             ofPopStyle();
             
             ofPushStyle();
-            ofColor bCol(ofColor::darkGray, 255 - bindTexAlpha);
-            ofColor fCol(ofColor::white, 255 - bindTexAlpha);
+            ofColor bCol(ofColor::lightGray, 255 - bindTexAlpha);
+            ofColor fCol(ofColor::black, 255 - bindTexAlpha);
             ofDrawBitmapStringHighlight(ofToString(p.x), p + offset, bCol, fCol);
             ofPopStyle();
         }
@@ -336,10 +336,10 @@ void Deformer::start()
     }
     
     if (type == DEFORM)
-        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 0.0f, morphDur * 0.8f, 1.0f, EASE_OUT_SINE);
+        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 0.0f, morphDur * 0.9f, 1.0f, EASE_OUT_SINE);
     else if (type == RESTORE)
     {
-        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 255.0f, morphDur * 0.8f, 1.0f, EASE_IN_SINE);
+        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 255.0f, morphDur * 0.5f, 1.0f, EASE_IN_SINE);
         Tweenzor::addCompleteListener(Tweenzor::getTween(&bindTexAlpha), this, &Deformer::onRestoreFinish);
     }
     

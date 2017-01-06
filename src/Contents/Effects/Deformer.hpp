@@ -100,8 +100,8 @@ private:
     TYPE type;
     
     const int numOutlineVts = 250;
-    const float morphDur = 1.8;
-    const float totalDur = 5.0;
+    const float morphDur = 4.0;
+    const float totalDur = 15.0;
 
 	int idx;
 

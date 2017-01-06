@@ -3,7 +3,7 @@
 void ofApp::setup()
 {
     ofEnableAlphaBlending();
-    ofBackground(ofColor::black);
+    ofBackground(ofColor::white);
     ofSetVerticalSync(true);
     
     Globals::ELAPSED_TIME = ofGetElapsedTimef();
@@ -64,11 +64,13 @@ void ofApp::update()
     gui.update();
     lMgmt.update();
 //    updateGlitch();
-    glitch.generateFx();
+    
 }
 
 void ofApp::draw()
 {
+    glitch.generateFx();
+    
     ofStyle s = ofGetStyle();
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
