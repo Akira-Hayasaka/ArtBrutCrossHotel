@@ -16,7 +16,6 @@ void Deformer::setup(string filePath, ContourFinderSettings settings, int idx)
     ofDisableArbTex();
     ofLoadImage(origTex, filePath);
     ofEnableArbTex();
-    ofLog() << "load " << filePath;
     
     tex.allocate(ONESCRN_W, ONESCRN_H);
     texForBinding.allocate(ONESCRN_W, ONESCRN_H);
@@ -114,22 +113,11 @@ void Deformer::setup(string filePath, ContourFinderSettings settings, int idx)
     
 	bMorphing = false;
 	type = NONE;
-	if (idx < 1)
-	{
-		initState = NOTYET;
-		startThread(false);
-	}
-	else
-	{
-		initState = DONE;
-	}
-
-    //bMorphing = false;
-    //type = NONE;
- //   initState = NOTYET;
-
- //   //startThread();
-	//initState = DONE;
+	initState = DONE;
+    
+    puppetWarp.update();
+    
+    ofLog() << "done setup for " << filePath;
 }
 
 void Deformer::threadedFunction()
@@ -294,7 +282,7 @@ void Deformer::draw(ofVec3f rot)
     
     ofPushMatrix();
     ofSetRectMode(OF_RECTMODE_CENTER);
-    ofTranslate(ONESCRN_W/2 + 375, ONESCRN_H/2 - 60);
+    ofTranslate(ONESCRN_W/2 + 310, ONESCRN_H/2 - 60);
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     screen.draw(0, 0);

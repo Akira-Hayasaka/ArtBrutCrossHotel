@@ -104,7 +104,7 @@ private:
     
     const int numOutlineVts = 250;
     const float morphDur = 4.0;
-    const float totalDur = 15.0;
+    const float totalDur = 20.0;
 
 	int idx;
 

@@ -22,7 +22,7 @@ void Logo::update()
 void Logo::draw()
 {
     ofPushMatrix();
-    ofTranslate(300, 700);
+    ofTranslate(330, 780);
     ofPushStyle();
     ofSetColor(ofColor::black);
     fontSmall.drawString("HOKKAIDO", 0, 0);

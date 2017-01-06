@@ -34,6 +34,7 @@ void Ink::setup()
     colors.push_back(ofColor::cyan);
     colors.push_back(ofColor::magenta);
     colors.push_back(ofColor::yellow);
+    c = colors.at(ofRandom(colors.size()));
     
     fadeAlpha = 255;
     state = DRAWABLE;
@@ -43,6 +44,7 @@ void Ink::setup()
 
 void Ink::update()
 {
+    judgeDrawable();
     inkSim.update();
     
     if (state == DRAWABLE &&
@@ -64,7 +66,6 @@ void Ink::stroke()
 {
     if (state == DRAWABLE)
     {
-        ofColor c = colors.at(ofRandom(colors.size()));
         float depth = ofRandom(50, 100);
         
         int brush = ofRandom(brushes.size());
@@ -103,8 +104,8 @@ void Ink::clear()
 
 void Ink::fadeOut()
 {
-    state = FADEOUT;
-    Tweenzor::add(&fadeAlpha, fadeAlpha, 0.0f, 0.0f, 2.0f, EASE_OUT_SINE);
+    state = FADING;
+    Tweenzor::add(&fadeAlpha, fadeAlpha, 0.0f, 0.0f, 3.0f, EASE_IN_SINE);
     Tweenzor::addCompleteListener(Tweenzor::getTween(&fadeAlpha), this, &Ink::onEndFadeOut);
 }
 
@@ -114,6 +115,17 @@ void Ink::onEndFadeOut(float* arg)
     Tweenzor::removeTween(&fadeAlpha);
     clear();
     fadeAlpha = 255;
-    state = DRAWABLE;
-    lastStrokeTime = Globals::ELAPSED_TIME;
+    fadeOutTime = Globals::ELAPSED_TIME;
+    state = DONEFADE;
+}
+
+void Ink::judgeDrawable()
+{
+    if (state == DONEFADE &&
+        Globals::ELAPSED_TIME - fadeOutTime > 5.0)
+    {
+        state = DRAWABLE;
+        c = colors.at(ofRandom(colors.size()));
+        lastStrokeTime = Globals::ELAPSED_TIME;
+    }
 }

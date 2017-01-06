@@ -30,11 +30,13 @@ public:
 private:
     
     void onEndFadeOut(float* arg);
+    void judgeDrawable();
     
     enum STATE
     {
         DRAWABLE,
-        FADEOUT
+        FADING,
+        DONEFADE
     };
     STATE state;
     
@@ -47,7 +49,9 @@ private:
     const float strokeInterval = 1.0;
     int numStroke;
     float lastStrokeTime;
+    float fadeOutTime;
     float fadeAlpha;
+    ofColor c;
 };
 
 #endif /* Ink_hpp */
