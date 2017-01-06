@@ -9,6 +9,25 @@
 #ifndef Ink_hpp
 #define Ink_hpp
 
-#include <stdio.h>
+#include "ofMain.h"
+#include "ofxInkSim.h"
+
+class Ink
+{
+public:
+    void setup();
+    void update();
+    void stroke();
+    void draw();
+    void clear();
+
+    ofPtr<UniformInfos> getUniformInfo() { return inkSim.getUniformInfo(); }
+    
+private:
+    
+    ofxInkSim inkSim;
+    ofFbo fbo;
+    vector<ofTexture> brushes;
+};
 
 #endif /* Ink_hpp */

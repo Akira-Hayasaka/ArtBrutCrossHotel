@@ -11,6 +11,8 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "ofxInkSim.h"
+
 #include "Constants.h"
 #include "Globals.hpp"
 
@@ -18,7 +20,7 @@ class GUI
 {
 public:
     
-    void setup();
+    void setup(ofPtr<UniformInfos> uniforms);
     void update();
     void draw();
     
@@ -26,6 +28,7 @@ public:
     void hide() { bHide = true; }
     void show() { bHide = false; }
     bool isVisible() { return !bHide; }
+    void resetToDefault();
     
 private:
     
@@ -33,6 +36,10 @@ private:
     
     // drawing contourFinder settings
     ofxPanel drawingCFSetting;
+    
+    ofxPanel gui;
+    ofXml settings;
+    ofPtr<UniformInfos> uniforms;
 };
 
 #endif /* GUI_hpp */

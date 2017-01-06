@@ -69,6 +69,10 @@
 		E985F9411E1F26030052BD47 /* Ink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F93F1E1F26030052BD47 /* Ink.cpp */; settings = {ASSET_TAGS = (); }; };
 		E985F9441E1F260F0052BD47 /* Logo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F9421E1F260F0052BD47 /* Logo.cpp */; settings = {ASSET_TAGS = (); }; };
 		E985F9471E1F261A0052BD47 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F9451E1F261A0052BD47 /* Particle.cpp */; settings = {ASSET_TAGS = (); }; };
+		E985F9B61E1F2D5C0052BD47 /* BrashIF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F9951E1F2D5C0052BD47 /* BrashIF.cpp */; settings = {ASSET_TAGS = (); }; };
+		E985F9B71E1F2D5C0052BD47 /* SampleBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F9971E1F2D5C0052BD47 /* SampleBrush.cpp */; settings = {ASSET_TAGS = (); }; };
+		E985F9B81E1F2D5C0052BD47 /* FboPingPong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F9991E1F2D5C0052BD47 /* FboPingPong.cpp */; settings = {ASSET_TAGS = (); }; };
+		E985F9B91E1F2D5C0052BD47 /* ofxInkSim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E985F99B1E1F2D5C0052BD47 /* ofxInkSim.cpp */; settings = {ASSET_TAGS = (); }; };
 		F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */; };
 		FAF56D62CD9CC8FC64320442 /* WmlLinearSystemExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB38C1864350FE4A17F18D /* WmlLinearSystemExt.cpp */; };
 		FB09C6B2A1DA0EA217240CB8 /* ofxCvGrayscaleImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 057122A817D12571F8C0C7A4 /* ofxCvGrayscaleImage.cpp */; };
@@ -407,6 +411,31 @@
 		E985F9431E1F260F0052BD47 /* Logo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Logo.hpp; sourceTree = "<group>"; };
 		E985F9451E1F261A0052BD47 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		E985F9461E1F261A0052BD47 /* Particle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Particle.hpp; sourceTree = "<group>"; };
+		E985F9951E1F2D5C0052BD47 /* BrashIF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrashIF.cpp; sourceTree = "<group>"; };
+		E985F9961E1F2D5C0052BD47 /* BrashIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrashIF.h; sourceTree = "<group>"; };
+		E985F9971E1F2D5C0052BD47 /* SampleBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SampleBrush.cpp; sourceTree = "<group>"; };
+		E985F9981E1F2D5C0052BD47 /* SampleBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleBrush.h; sourceTree = "<group>"; };
+		E985F9991E1F2D5C0052BD47 /* FboPingPong.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FboPingPong.cpp; sourceTree = "<group>"; };
+		E985F99A1E1F2D5C0052BD47 /* FboPingPong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboPingPong.h; sourceTree = "<group>"; };
+		E985F99B1E1F2D5C0052BD47 /* ofxInkSim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxInkSim.cpp; sourceTree = "<group>"; };
+		E985F99C1E1F2D5C0052BD47 /* ofxInkSim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxInkSim.h; sourceTree = "<group>"; };
+		E985F99E1E1F2D5C0052BD47 /* AddPigmentShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPigmentShader.h; sourceTree = "<group>"; };
+		E985F99F1E1F2D5C0052BD47 /* AddWaterShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWaterShader.h; sourceTree = "<group>"; };
+		E985F9A01E1F2D5C0052BD47 /* BlockShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockShader.h; sourceTree = "<group>"; };
+		E985F9A11E1F2D5C0052BD47 /* Collide1Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collide1Shader.h; sourceTree = "<group>"; };
+		E985F9A21E1F2D5C0052BD47 /* Collide2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collide2Shader.h; sourceTree = "<group>"; };
+		E985F9A31E1F2D5C0052BD47 /* GapShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GapShader.h; sourceTree = "<group>"; };
+		E985F9A41E1F2D5C0052BD47 /* GetVelDenShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetVelDenShader.h; sourceTree = "<group>"; };
+		E985F9A51E1F2D5C0052BD47 /* GetXYZShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetXYZShader.h; sourceTree = "<group>"; };
+		E985F9A61E1F2D5C0052BD47 /* GetZShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetZShader.h; sourceTree = "<group>"; };
+		E985F9A71E1F2D5C0052BD47 /* InkFlowShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InkFlowShader.h; sourceTree = "<group>"; };
+		E985F9A81E1F2D5C0052BD47 /* InkShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InkShader.h; sourceTree = "<group>"; };
+		E985F9A91E1F2D5C0052BD47 /* InkSupplyShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InkSupplyShader.h; sourceTree = "<group>"; };
+		E985F9AA1E1F2D5C0052BD47 /* InkXAmtShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InkXAmtShader.h; sourceTree = "<group>"; };
+		E985F9AB1E1F2D5C0052BD47 /* InkXFrShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InkXFrShader.h; sourceTree = "<group>"; };
+		E985F9AC1E1F2D5C0052BD47 /* InkXToShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InkXToShader.h; sourceTree = "<group>"; };
+		E985F9AD1E1F2D5C0052BD47 /* Stream1Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stream1Shader.h; sourceTree = "<group>"; };
+		E985F9AE1E1F2D5C0052BD47 /* Stream2Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stream2Shader.h; sourceTree = "<group>"; };
 		EABECCA10B3B22B8DD9090CB /* Helpers.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Helpers.h; path = addons/ofxCv/libs/ofxCv/include/ofxCv/Helpers.h; sourceTree = SOURCE_ROOT; };
 		EBBA82550412B77EFA70AE87 /* funcattrib.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = funcattrib.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/gpu/device/funcattrib.hpp; sourceTree = SOURCE_ROOT; };
 		ECC34C470C60F0A2AE2761B1 /* random.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = random.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/random.h; sourceTree = SOURCE_ROOT; };
@@ -1072,6 +1101,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				E985F9481E1F2D5C0052BD47 /* ofxInkSim */,
 				480A780D8D0308AE4A368801 /* ofxGui */,
 				A0B90D3B0ADB9C1716816714 /* ofxOpenCv */,
 				1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */,
@@ -1293,6 +1323,63 @@
 			path = Effects;
 			sourceTree = "<group>";
 		};
+		E985F9481E1F2D5C0052BD47 /* ofxInkSim */ = {
+			isa = PBXGroup;
+			children = (
+				E985F9931E1F2D5C0052BD47 /* src */,
+			);
+			name = ofxInkSim;
+			path = ../../../addons/ofxInkSim;
+			sourceTree = "<group>";
+		};
+		E985F9931E1F2D5C0052BD47 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				E985F9941E1F2D5C0052BD47 /* brush */,
+				E985F9991E1F2D5C0052BD47 /* FboPingPong.cpp */,
+				E985F99A1E1F2D5C0052BD47 /* FboPingPong.h */,
+				E985F99B1E1F2D5C0052BD47 /* ofxInkSim.cpp */,
+				E985F99C1E1F2D5C0052BD47 /* ofxInkSim.h */,
+				E985F99D1E1F2D5C0052BD47 /* shader */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		E985F9941E1F2D5C0052BD47 /* brush */ = {
+			isa = PBXGroup;
+			children = (
+				E985F9951E1F2D5C0052BD47 /* BrashIF.cpp */,
+				E985F9961E1F2D5C0052BD47 /* BrashIF.h */,
+				E985F9971E1F2D5C0052BD47 /* SampleBrush.cpp */,
+				E985F9981E1F2D5C0052BD47 /* SampleBrush.h */,
+			);
+			path = brush;
+			sourceTree = "<group>";
+		};
+		E985F99D1E1F2D5C0052BD47 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+				E985F99E1E1F2D5C0052BD47 /* AddPigmentShader.h */,
+				E985F99F1E1F2D5C0052BD47 /* AddWaterShader.h */,
+				E985F9A01E1F2D5C0052BD47 /* BlockShader.h */,
+				E985F9A11E1F2D5C0052BD47 /* Collide1Shader.h */,
+				E985F9A21E1F2D5C0052BD47 /* Collide2Shader.h */,
+				E985F9A31E1F2D5C0052BD47 /* GapShader.h */,
+				E985F9A41E1F2D5C0052BD47 /* GetVelDenShader.h */,
+				E985F9A51E1F2D5C0052BD47 /* GetXYZShader.h */,
+				E985F9A61E1F2D5C0052BD47 /* GetZShader.h */,
+				E985F9A71E1F2D5C0052BD47 /* InkFlowShader.h */,
+				E985F9A81E1F2D5C0052BD47 /* InkShader.h */,
+				E985F9A91E1F2D5C0052BD47 /* InkSupplyShader.h */,
+				E985F9AA1E1F2D5C0052BD47 /* InkXAmtShader.h */,
+				E985F9AB1E1F2D5C0052BD47 /* InkXFrShader.h */,
+				E985F9AC1E1F2D5C0052BD47 /* InkXToShader.h */,
+				E985F9AD1E1F2D5C0052BD47 /* Stream1Shader.h */,
+				E985F9AE1E1F2D5C0052BD47 /* Stream2Shader.h */,
+			);
+			path = shader;
+			sourceTree = "<group>";
+		};
 		ED977EFE7B82B0D53CB5C778 /* superres */ = {
 			isa = PBXGroup;
 			children = (
@@ -1433,6 +1520,7 @@
 				FB09C6B2A1DA0EA217240CB8 /* ofxCvGrayscaleImage.cpp in Sources */,
 				E212C821D1064B92DD953A42 /* ofxCvHaarFinder.cpp in Sources */,
 				63020F16C7E8DED980111241 /* ofxCvImage.cpp in Sources */,
+				E985F9B71E1F2D5C0052BD47 /* SampleBrush.cpp in Sources */,
 				D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
@@ -1443,6 +1531,7 @@
 				6FB779180FB3B27D323336AE /* fdog.cpp in Sources */,
 				68CF26ED86C3C10C45460C0F /* Calibration.cpp in Sources */,
 				E985F9471E1F261A0052BD47 /* Particle.cpp in Sources */,
+				E985F9B81E1F2D5C0052BD47 /* FboPingPong.cpp in Sources */,
 				93E2EE8E227D8C12E41C5F73 /* ContourFinder.cpp in Sources */,
 				28E5678DFAF9790F8DC83D29 /* Distance.cpp in Sources */,
 				B5568677EC64043366C79D29 /* Flow.cpp in Sources */,
@@ -1459,6 +1548,7 @@
 				E68F33FFBC7F06E5AA6CA08E /* LinearAlgebra.cpp in Sources */,
 				7019DD9A62066BD2964EEFBD /* RigidMeshDeformer2D.cpp in Sources */,
 				88F63F5875E3603BBADE861E /* TriangleMesh.cpp in Sources */,
+				E985F9B61E1F2D5C0052BD47 /* BrashIF.cpp in Sources */,
 				A90B59EAF91AA03D6FBAD7B5 /* WmlExtTriangleUtils.cpp in Sources */,
 				FAF56D62CD9CC8FC64320442 /* WmlLinearSystemExt.cpp in Sources */,
 				9AAEA66B2A535D9E72272D86 /* WmlBandedMatrix.cpp in Sources */,
@@ -1476,6 +1566,7 @@
 				8597AAE664035165FF3EC2AF /* ofxTriangleMesh.cpp in Sources */,
 				E98139641E15E24C00AA335E /* Deforming.cpp in Sources */,
 				680BD98E1553AFB900A4AC7D /* triangle.cpp in Sources */,
+				E985F9B91E1F2D5C0052BD47 /* ofxInkSim.cpp in Sources */,
 				59FB1675C4625BE8414E6644 /* ofxLayer.cpp in Sources */,
 				C7B511FD14E95DDE8B10B052 /* ofxLayerManager.cpp in Sources */,
 				7A384C02F66F1D186F994F03 /* Tween.cpp in Sources */,

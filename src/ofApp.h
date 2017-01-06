@@ -15,6 +15,7 @@
 #include "Deforming.hpp"
 
 #include "Logo.hpp"
+#include "Ink.hpp"
 
 class ofApp : public ofBaseApp
 {
@@ -46,6 +47,7 @@ private:
     Deforming* deforming;
     
     Logo logo;
+    Ink ink;
     
     // glitch
     ofxPostGlitch glitch;
