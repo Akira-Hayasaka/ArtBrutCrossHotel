@@ -282,7 +282,7 @@ void Deformer::draw(ofVec3f rot)
     
     ofPushMatrix();
     ofSetRectMode(OF_RECTMODE_CENTER);
-    ofTranslate(ONESCRN_W/2 + 310, ONESCRN_H/2 - 60);
+    ofTranslate(ONESCRN_W/2 + 280, ONESCRN_H/2 - 60);
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     screen.draw(0, 0);

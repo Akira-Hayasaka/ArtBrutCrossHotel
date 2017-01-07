@@ -52,6 +52,9 @@ private:
     float fadeOutTime;
     float fadeAlpha;
     ofColor c;
+    
+    int w;
+    int h;
 };
 
 #endif /* Ink_hpp */

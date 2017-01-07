@@ -10,8 +10,8 @@
 
 void Ink::setup()
 {
-    int w = 1280;
-    int h = 720;
+    w = 1280;
+    h = 720;
     inkSim.setup(w, h,
                  "tex/grain2.jpg",
                  "tex/alum3.jpg",
@@ -73,7 +73,7 @@ void Ink::stroke()
         ofSetRectMode(OF_RECTMODE_CENTER);
         inkSim.begin();
         ofPushMatrix();
-        ofTranslate(ofRandom(0, 1280), ofRandom(0, 720), ofRandom(0, -1500));
+        ofTranslate(ofRandom(0, w), ofRandom(0, h), ofRandom(0, -1500));
         ofPushStyle();
         ofSetColor(getInkColor(c.getHueAngle(), ofRandom(150, 255), ofRandom(150, 220)));
         brushes.at(brush).draw(0, 0);
