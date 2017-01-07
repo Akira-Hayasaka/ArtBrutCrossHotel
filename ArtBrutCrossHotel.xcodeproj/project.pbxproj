@@ -1301,15 +1301,15 @@
 		E981395E1E15E24C00AA335E /* Contents */ = {
 			isa = PBXGroup;
 			children = (
-				E981395F1E15E24C00AA335E /* Deforming.cpp */,
-				E98139601E15E24C00AA335E /* Deforming.hpp */,
-				E98139611E15E24C00AA335E /* Effects */,
 				E985F93F1E1F26030052BD47 /* Ink.cpp */,
 				E985F9401E1F26030052BD47 /* Ink.hpp */,
 				E985F9421E1F260F0052BD47 /* Logo.cpp */,
 				E985F9431E1F260F0052BD47 /* Logo.hpp */,
 				E985F9451E1F261A0052BD47 /* Particle.cpp */,
 				E985F9461E1F261A0052BD47 /* Particle.hpp */,
+				E981395F1E15E24C00AA335E /* Deforming.cpp */,
+				E98139601E15E24C00AA335E /* Deforming.hpp */,
+				E98139611E15E24C00AA335E /* Effects */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
