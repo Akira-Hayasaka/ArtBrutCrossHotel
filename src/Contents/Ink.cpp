@@ -37,9 +37,12 @@ void Ink::setup()
     c = colors.at(ofRandom(colors.size()));
     
     fadeAlpha = 255;
+    circleRad = 0;
     state = DRAWABLE;
     numStroke = 0;
     lastStrokeTime = Globals::ELAPSED_TIME;
+    
+    inkCenter.set(ONESCRN_W/2 + 280, ONESCRN_H/2 - 60);
 }
 
 void Ink::update()
@@ -71,7 +74,7 @@ void Ink::stroke()
         int brush = ofRandom(brushes.size());
         
 //        ofPoint p = getCircularRdmPos(h * 0.8, ofPoint(w/2 + 280, h/2 + 60), true);
-        
+
         ofSetRectMode(OF_RECTMODE_CENTER);
         inkSim.begin();
         ofPushMatrix();
@@ -95,8 +98,12 @@ void Ink::draw()
     fbo.end();
     
     ofPushStyle();
-    ofSetColor(ofColor::white, fadeAlpha);
     fbo.draw(0, 0, ofGetWidth(), ofGetHeight());
+    if (state == FADING)
+    {
+        ofSetColor(ofColor::white);
+        ofDrawCircle(inkCenter, circleRad);
+    }
     ofPopStyle();
 }
 
@@ -108,16 +115,17 @@ void Ink::clear()
 void Ink::fadeOut()
 {
     state = FADING;
-    Tweenzor::add(&fadeAlpha, fadeAlpha, 0.0f, 0.0f, 3.0f, EASE_IN_SINE);
-    Tweenzor::addCompleteListener(Tweenzor::getTween(&fadeAlpha), this, &Ink::onEndFadeOut);
+    Tweenzor::add(&circleRad, circleRad, 1920, 0.0f, 2.0f, EASE_IN_SINE);
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&circleRad), this, &Ink::onEndFadeOut);
 }
 
 void Ink::onEndFadeOut(float* arg)
 {
-    Tweenzor::removeCompleteListener(Tweenzor::getTween(&fadeAlpha));
-    Tweenzor::removeTween(&fadeAlpha);
+    Tweenzor::removeCompleteListener(Tweenzor::getTween(&circleRad));
+    Tweenzor::removeTween(&circleRad);
     clear();
     fadeAlpha = 255;
+    circleRad = 0;
     fadeOutTime = Globals::ELAPSED_TIME;
     state = DONEFADE;
 }
@@ -125,7 +133,7 @@ void Ink::onEndFadeOut(float* arg)
 void Ink::judgeDrawable()
 {
     if (state == DONEFADE &&
-        Globals::ELAPSED_TIME - fadeOutTime > 5.0)
+        Globals::ELAPSED_TIME - fadeOutTime > 0.0)
     {
         state = DRAWABLE;
         c = colors.at(ofRandom(colors.size()));

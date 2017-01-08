@@ -53,10 +53,12 @@ private:
     float lastStrokeTime;
     float fadeOutTime;
     float fadeAlpha;
+    float circleRad;
     ofColor c;
     
     int w;
     int h;
+    ofPoint inkCenter;
 };
 
 #endif /* Ink_hpp */
