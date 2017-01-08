@@ -13,7 +13,9 @@
 #include "ofxInkSim.h"
 #include "ofxTweenzor.h"
 
+#include "Constants.h"
 #include "Globals.hpp"
+#include "Utils.h"
 
 class Ink
 {

@@ -70,10 +70,13 @@ void Ink::stroke()
         
         int brush = ofRandom(brushes.size());
         
+//        ofPoint p = getCircularRdmPos(h * 0.8, ofPoint(w/2 + 280, h/2 + 60), true);
+        
         ofSetRectMode(OF_RECTMODE_CENTER);
         inkSim.begin();
         ofPushMatrix();
-        ofTranslate(ofRandom(0, w), ofRandom(0, h), ofRandom(0, -1500));
+        ofTranslate(ofRandom(100, w-100) + 280, ofRandom(0-100, h-100) + 100, ofRandom(0, -1500));
+//        ofTranslate(p.x, p.y, ofRandom(0, -1500));
         ofPushStyle();
         ofSetColor(getInkColor(c.getHueAngle(), ofRandom(150, 255), ofRandom(150, 220)));
         brushes.at(brush).draw(0, 0);

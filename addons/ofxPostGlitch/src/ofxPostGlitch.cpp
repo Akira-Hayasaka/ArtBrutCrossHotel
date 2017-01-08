@@ -56,7 +56,7 @@ void ofxPostGlitch::generateFx(){
 			shader[i].setUniformTexture	("image"		,*targetBuffer,0);
 			shader[i].setUniform1i		("trueWidth"	,buffer_size.x);
 			shader[i].setUniform1i		("trueHeight"	,buffer_size.y);
-            shader[i].setUniform1f		("rand"			,ofNoise(ofGetElapsedTimef(), 10));
+            shader[i].setUniform1f		("rand"			,ofNoise(ofGetElapsedTimef() * 0.1, 10));
 			shader[i].setUniform1f		("mouseX"		,ofGetMouseX());
 			shader[i].setUniform1f		("mouseY"		,ofGetMouseY());
 			shader[i].setUniform1f		("val1"			,ShadeVal[0]);
@@ -67,13 +67,13 @@ void ofxPostGlitch::generateFx(){
 			shader[i].setUniform2fv		("blur_vec"		,v);
 
 			ShadingBuffer.begin();
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            ofClear(0);//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			ofRect(0, 0, buffer_size.x, buffer_size.y);
 			ShadingBuffer.end();
 			shader[i].end();
 
 			targetBuffer->begin();
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			ofClear(0);//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			ShadingBuffer.draw(0, 0,buffer_size.x,buffer_size.y);
 			targetBuffer->end();
 		}
