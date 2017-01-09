@@ -14,6 +14,8 @@ namespace Globals
     vector<ofFbo> morphSequence;
     ofTexture testTex;
     
+    ofEvent<void> fadeout;
+    
     // params
     ofParameter<float> minArea, maxArea, threshold;
     ofParameter<bool> holes;

@@ -14,7 +14,9 @@
 namespace Globals
 {
     extern float ELAPSED_TIME;
-    extern ofTexture testTex;    
+    extern ofTexture testTex;
+    
+    extern ofEvent<void> fadeout;
     
     // params
     extern ofParameter<float> minArea, maxArea, threshold;

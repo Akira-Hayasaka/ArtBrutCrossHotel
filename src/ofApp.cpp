@@ -5,7 +5,7 @@ void ofApp::setup()
     ofEnableAlphaBlending();
     ofBackground(ofColor::white);
     ofSetVerticalSync(true);
-    ofSetCircleResolution(60);
+    ofSetCircleResolution(30);
     
     Globals::ELAPSED_TIME = ofGetElapsedTimef();
     

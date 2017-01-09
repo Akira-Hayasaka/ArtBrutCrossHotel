@@ -109,6 +109,8 @@ void Deforming::checkDeformBegin()
         
         bDeforming = true;
         ofAddListener(restoreFrom->finEvent, this, &Deforming::onFinishEvent);
+        
+        ofNotifyEvent(Globals::fadeout);
     }
 }
 

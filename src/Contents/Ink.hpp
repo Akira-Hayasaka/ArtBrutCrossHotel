@@ -34,6 +34,8 @@ private:
     void onEndFadeOut(float* arg);
     void judgeDrawable();
     
+    void onFadeout();
+    
     enum STATE
     {
         DRAWABLE,
@@ -48,7 +50,7 @@ private:
     vector<ofColor> colors;
 
     const int maxStroke = 30;
-    const float strokeInterval = 1.0;
+    const float strokeInterval = 0.75;
     int numStroke;
     float lastStrokeTime;
     float fadeOutTime;

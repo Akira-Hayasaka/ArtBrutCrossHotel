@@ -43,6 +43,8 @@ void Ink::setup()
     lastStrokeTime = Globals::ELAPSED_TIME;
     
     inkCenter.set(ONESCRN_W/2 + 280, ONESCRN_H/2 - 60);
+    
+    ofAddListener(Globals::fadeout, this, &Ink::onFadeout);
 }
 
 void Ink::update()
@@ -55,13 +57,6 @@ void Ink::update()
     {
         stroke();
         lastStrokeTime = Globals::ELAPSED_TIME;
-        numStroke++;
-        
-        if (numStroke >= maxStroke)
-        {
-            numStroke = 0;
-            fadeOut();
-        }
     }
 }
 
@@ -69,17 +64,11 @@ void Ink::stroke()
 {
     if (state == DRAWABLE)
     {
-        float depth = ofRandom(50, 100);
-        
         int brush = ofRandom(brushes.size());
-        
-//        ofPoint p = getCircularRdmPos(h * 0.8, ofPoint(w/2 + 280, h/2 + 60), true);
-
         ofSetRectMode(OF_RECTMODE_CENTER);
         inkSim.begin();
         ofPushMatrix();
         ofTranslate(ofRandom(100, w-100) + 280, ofRandom(0-100, h-100) + 100, ofRandom(0, -1500));
-//        ofTranslate(p.x, p.y, ofRandom(0, -1500));
         ofPushStyle();
         ofSetColor(getInkColor(c.getHueAngle(), ofRandom(150, 255), ofRandom(150, 220)));
         brushes.at(brush).draw(0, 0);
@@ -115,7 +104,7 @@ void Ink::clear()
 void Ink::fadeOut()
 {
     state = FADING;
-    Tweenzor::add(&circleRad, circleRad, 1920, 0.0f, 2.0f, EASE_IN_SINE);
+    Tweenzor::add(&circleRad, circleRad, 1920*0.65, 0.0f, 4.0f, EASE_OUT_CUBIC);
     Tweenzor::addCompleteListener(Tweenzor::getTween(&circleRad), this, &Ink::onEndFadeOut);
 }
 
@@ -133,10 +122,15 @@ void Ink::onEndFadeOut(float* arg)
 void Ink::judgeDrawable()
 {
     if (state == DONEFADE &&
-        Globals::ELAPSED_TIME - fadeOutTime > 0.0)
+        Globals::ELAPSED_TIME - fadeOutTime > 1.0)
     {
         state = DRAWABLE;
         c = colors.at(ofRandom(colors.size()));
         lastStrokeTime = Globals::ELAPSED_TIME;
     }
+}
+
+void Ink::onFadeout()
+{
+    fadeOut();
 }
