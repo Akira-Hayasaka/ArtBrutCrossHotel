@@ -1,4 +1,5 @@
 ofxGui
+ofxInkSim
 ofxOpenCv
 ofxXmlSettings
 addons/ofxCv

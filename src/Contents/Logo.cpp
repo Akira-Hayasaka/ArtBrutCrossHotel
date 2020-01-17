@@ -25,9 +25,9 @@ void Logo::draw()
     ofTranslate(330, 780);
     ofPushStyle();
     ofSetColor(ofColor::black);
-    fontSmall.drawString("HOKKAIDO", 0, 0);
-    fontBig.drawString("ART BRUT", -133, 70);
-    fontSmall.drawString("EXHIBITION", -13, 120);
+	fontBig.drawString("BORDERLESS ART", 0, 0);
+    fontSmall.drawString("IN", -133, 70);
+	fontBig.drawString("SCARTS", -13, 120);
     ofPopStyle();
     ofPopMatrix();
 }

@@ -55,7 +55,7 @@ void ofxPuppet::setControlPoint(int i, const ofVec2f& position) {
 	if (controlPoints.find(i) == controlPoints.end()) {
 		controlPoints.insert(i);
 	}
-	deformedMesh.getVertices()[i].set(position.x, position.y);
+	deformedMesh.getVertices()[i] = glm::vec3(position.x, position.y, 0.);
 	needsUpdating = true; 
 }
 

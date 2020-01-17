@@ -90,9 +90,6 @@ private:
     void makeCentroidMovePath();
     float getNearestVertex(const ofMesh& mesh, const ofVec2f& target, int& vertexIndex);    
     void onRestoreFinish(float* arg);
-    void drawIntoBindingTex();
-    void drawDeformingTex();
-    void drawDeformingEffects();
     
     enum TYPE
     {
@@ -103,8 +100,8 @@ private:
     TYPE type;
     
     const int numOutlineVts = 250;
-    const float morphDur = 4.0;
-    const float totalDur = 20.0;
+    const float morphDur = 1.8;
+    const float totalDur = 5.0;
 
 	int idx;
 
@@ -133,6 +130,8 @@ private:
     
     ofVec2f seqPos;
     float lastSeqTime;
+    
+    int morphSeqIdx;
 };
 
 #endif /* Puppet_hpp */

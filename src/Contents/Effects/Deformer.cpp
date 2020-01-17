@@ -16,6 +16,7 @@ void Deformer::setup(string filePath, ContourFinderSettings settings, int idx)
     ofDisableArbTex();
     ofLoadImage(origTex, filePath);
     ofEnableArbTex();
+    ofLog() << "load " << filePath;
     
     tex.allocate(ONESCRN_W, ONESCRN_H);
     texForBinding.allocate(ONESCRN_W, ONESCRN_H);
@@ -64,7 +65,7 @@ void Deformer::setup(string filePath, ContourFinderSettings settings, int idx)
         
         if (outline.size() > 5)
         {
-            vector<ofPoint> linePts = outline.getVertices();
+            vector<glm::vec3> linePts = outline.getVertices();
             vector<ofPoint> alignedPts;
             
             int topLeftIdx = 0;
@@ -113,11 +114,22 @@ void Deformer::setup(string filePath, ContourFinderSettings settings, int idx)
     
 	bMorphing = false;
 	type = NONE;
-	initState = DONE;
-    
-    puppetWarp.update();
-    
-    ofLog() << "done setup for " << filePath;
+	if (idx < 1)
+	{
+		initState = NOTYET;
+		startThread(false);
+	}
+	else
+	{
+		initState = DONE;
+	}
+
+    //bMorphing = false;
+    //type = NONE;
+ //   initState = NOTYET;
+
+ //   //startThread();
+	//initState = DONE;
 }
 
 void Deformer::threadedFunction()
@@ -152,24 +164,100 @@ void Deformer::update()
         {
             puppetWarp.setControlPoint(mp.idx, mp.pts);
         }
+        
+        if (type == DEFORM && Globals::ELAPSED_TIME - lastSeqTime > 0.12 &&
+            morphSeqIdx < Globals::morphSequence.size())
+        {
+			Globals::morphSequence.at(morphSeqIdx).begin();
+            ofClear(0);
+            ofPushMatrix();
+            ofScale(MORPH_SEQ_RATIO, MORPH_SEQ_RATIO);
+            texForBinding.getTexture().bind();
+            puppetWarp.getDeformedMesh().draw();
+            texForBinding.getTexture().unbind();
+            ofPopMatrix();
+			Globals::morphSequence.at(morphSeqIdx).end();
+            
+            lastSeqTime = Globals::ELAPSED_TIME;
+            morphSeqIdx++;
+        }
     }
+    
+    puppetWarp.update();
+    
+    texForBinding.begin();
+    ofClear(0);
+    ofPushStyle();
+    ofSetColor(ofColor::white, bindTexAlpha);
+    tex.draw(0, 0);
+    ofPopStyle();
+    texForBinding.end();
     
     if (!bDone)
     {
         if (Globals::ELAPSED_TIME - startMorphingTime > totalDur)
         {
             ofNotifyEvent(finEvent);
+            for (auto& f : Globals::morphSequence)
+            {
+                f.begin();
+                ofClear(0);
+                f.end();
+            }
             bDone = true;
         }
     }
     
-    puppetWarp.update();
-    drawIntoBindingTex();
-    
     screen.begin();
     ofClear(0);
-    drawDeformingTex();
-    drawDeformingEffects();
+    texForBinding.getTexture().bind();
+    puppetWarp.getDeformedMesh().draw();
+    texForBinding.getTexture().unbind();
+    
+    if (type == RESTORE)
+    {
+        ofPushStyle();
+        ofSetColor(ofColor::white, (255 - bindTexAlpha) * 0.6);
+        puppetWarp.getDeformedMesh().drawWireframe();
+        ofPopStyle();
+        
+        for (auto l : labelPoints)
+        {
+            ofVec2f p = puppetWarp.getDeformedMesh().getVertex(l.idx);
+            
+            ofVec2f offset;
+            if (p.x < centroid.pts.x)
+            {
+                // 1
+                if (p.y < centroid.pts.y)
+                    offset.set(-100, -100);
+                // 4
+                else
+                    offset.set(-100, 100);
+            }
+            else
+            {
+                // 2
+                if (p.y < centroid.pts.y)
+                    offset.set(100, -100);
+                // 3
+                else
+                    offset.set(100, 100);
+            }
+            
+            ofPushStyle();
+            ofSetColor(ofColor::gray, 255 - bindTexAlpha);
+            ofDrawLine(p, p + offset);
+            ofDrawCircle(p, 4);
+            ofPopStyle();
+            
+            ofPushStyle();
+            ofColor bCol(ofColor::darkGray, 255 - bindTexAlpha);
+            ofColor fCol(ofColor::white, 255 - bindTexAlpha);
+            ofDrawBitmapStringHighlight(ofToString(p.x), p + offset, bCol, fCol);
+            ofPopStyle();
+        }
+    }
     screen.end();
 }
 
@@ -248,10 +336,10 @@ void Deformer::start()
     }
     
     if (type == DEFORM)
-        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 0.0f, morphDur * 0.9f, 1.0f, EASE_OUT_SINE);
+        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 0.0f, morphDur * 0.8f, 1.0f, EASE_OUT_SINE);
     else if (type == RESTORE)
     {
-        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 255.0f, morphDur * 0.7f, 1.0f, EASE_IN_SINE);
+        Tweenzor::add(&bindTexAlpha, bindTexAlpha, 255.0f, morphDur * 0.8f, 1.0f, EASE_IN_SINE);
         Tweenzor::addCompleteListener(Tweenzor::getTween(&bindTexAlpha), this, &Deformer::onRestoreFinish);
     }
     
@@ -268,11 +356,18 @@ void Deformer::start()
         }
     }
     
+    for (auto& f : Globals::morphSequence)
+    {
+        f.begin();
+        ofClear(0);
+        f.end();
+    }
     startMorphingTime = Globals::ELAPSED_TIME;
     bDone = false;
     bMorphing = true;
     lastSeqTime = startMorphingTime;
     seqPos.set(ofRandom(0, APP_W), ofRandom(ONESCRN_H - 100));
+    morphSeqIdx = 0;
 }
 
 void Deformer::draw(ofVec3f rot)
@@ -280,21 +375,52 @@ void Deformer::draw(ofVec3f rot)
     if (initState != DONE)
         return;
     
+	ofPushMatrix();
+	ofTranslate(-1920, 0);
+
+    if (bMorphing)
+    {
+        if (type == DEFORM)
+        {
+            for (int i = 0; i < morphSeqIdx; i++)
+            {
+                ofPoint p;
+                if (seqPos.x < APP_W/2)
+                    p.x = seqPos.x + Globals::morphSequence.at(i).getWidth() * i;
+                else
+                    p.x = seqPos.x - Globals::morphSequence.at(i).getWidth() * i;
+                p.y = seqPos.y;
+                ofPushStyle();
+                ofSetColor(ofColor::white, bindTexAlpha);
+				Globals::morphSequence.at(i).draw(p.x, p.y);
+                ofNoFill();
+                ofSetColor(ofColor::darkGray, bindTexAlpha);
+                ofDrawRectangle(p, Globals::morphSequence.at(i).getWidth(), Globals::morphSequence.at(i).getHeight());
+                ofPopStyle();
+            }
+        }
+    }
+    
     ofPushMatrix();
     ofSetRectMode(OF_RECTMODE_CENTER);
-    ofTranslate(ONESCRN_W/2 + 280, ONESCRN_H/2 - 60);
+    ofTranslate(ONESCRN_W + ONESCRN_W/2, ONESCRN_H/2);
+//    ofRotateX(rot.x);
+//    ofRotateY(rot.y);
+//    ofRotateZ(rot.z);
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     screen.draw(0, 0);
 	glDisable(GL_BLEND);
     ofSetRectMode(OF_RECTMODE_CORNER);
     ofPopMatrix();
+
+	ofPopMatrix();
 }
 
 void Deformer::setCtrlPoints()
 {
     edges.clear();
-    vector<ofPoint> pts = outline.getVertices();
+    vector<glm::vec3> pts = outline.getVertices();
     for (int i = 0; i < pts.size(); i++)
     {
         vector<IdxDist> edgeCandidate;
@@ -302,7 +428,7 @@ void Deformer::setCtrlPoints()
         {
             IdxDist idist;
             idist.idx = j;
-            idist.dist = puppetWarp.getOriginalMesh().getVertices().at(j).distance(pts.at(i));
+            idist.dist = glm::distance(puppetWarp.getOriginalMesh().getVertices().at(j), pts.at(i));
             idist.pts = puppetWarp.getOriginalMesh().getVertices().at(j);
             edgeCandidate.push_back(idist);
         }
@@ -315,8 +441,11 @@ void Deformer::setCtrlPoints()
 void Deformer::getConvexHullEdges(vector<cv::Point> hullEdge)
 {
     ofPolyline hullLine;
-    for (auto p : hullEdge)
-        hullLine.addVertex(ofxCv::toOf(p));
+	for (auto p : hullEdge)
+	{
+		glm::vec2 v = ofxCv::toOf(p);
+        hullLine.addVertex(glm::vec3(v.x, v.y, 0.));
+	}
     hullLine = hullLine.getResampledByCount(6);
     
     for (auto p : hullLine.getVertices())
@@ -332,13 +461,13 @@ void Deformer::getConvexHullEdges(vector<cv::Point> hullEdge)
 
 void Deformer::getCentroid()
 {
-    ofVec2f cen = outline.getCentroid2D();
+    glm::vec3 cen = outline.getCentroid2D();
     vector<IdxDist> centroidCandidate;
     for (int i = 0; i < puppetWarp.getOriginalMesh().getVertices().size(); i++)
     {
         IdxDist idist;
         idist.idx = i;
-        idist.dist = puppetWarp.getOriginalMesh().getVertices().at(i).distance(cen);
+        idist.dist = glm::distance(puppetWarp.getOriginalMesh().getVertices().at(i), cen);
         idist.pts = puppetWarp.getOriginalMesh().getVertices().at(i);
         centroidCandidate.push_back(idist);
     }
@@ -369,7 +498,7 @@ void Deformer::makeCentroidMovePath()
     float angle = PI * 2 / devide;
     
     centroidMovePath.clear();
-    centroidMovePath.addVertex(orig);
+    centroidMovePath.addVertex(glm::vec3(orig.x, orig.y, 0.));
     for (int i = 0; i < devide; i++)
     {
         ofPoint p(orig.x + rad * cos(angle * i),
@@ -398,73 +527,9 @@ void Deformer::onRestoreFinish(float* arg)
 {
     Tweenzor::removeCompleteListener(Tweenzor::getTween(&bindTexAlpha));
     
+//    centroidMovePathIdx = 0;
+//    Tweenzor::add(&centroidMovePathIdx, centroidMovePathIdx, (float)centroidMovePath.getVertices().size()-1.0f,
+//                  0.0f, totalDur - (Globals::ELAPSED_TIME - startMorphingTime), EASE_IN_OUT_EXPO);
+    
     Globals::testTex = origTex;
-}
-
-void Deformer::drawIntoBindingTex()
-{
-    texForBinding.begin();
-    ofClear(0);
-    ofPushStyle();
-    ofSetColor(ofColor::black, bindTexAlpha);
-    tex.draw(0, 0);
-    ofPopStyle();
-    texForBinding.end();
-}
-
-void Deformer::drawDeformingTex()
-{
-    texForBinding.getTexture().bind();
-    puppetWarp.getDeformedMesh().draw();
-    texForBinding.getTexture().unbind();
-}
-
-void Deformer::drawDeformingEffects()
-{
-    if (type == RESTORE)
-    {
-        ofPushStyle();
-        ofSetColor(ofColor::black, 255 - bindTexAlpha);
-        puppetWarp.getDeformedMesh().drawWireframe();
-        ofPopStyle();
-        
-        for (auto l : labelPoints)
-        {
-            ofVec2f p = puppetWarp.getDeformedMesh().getVertex(l.idx);
-            
-            ofVec2f offset;
-            if (p.x < centroid.pts.x)
-            {
-                // 1
-                if (p.y < centroid.pts.y)
-                    offset.set(-100, -100);
-                // 4
-                else
-                    offset.set(-100, 100);
-            }
-            else
-            {
-                // 2
-                if (p.y < centroid.pts.y)
-                    offset.set(100, -100);
-                // 3
-                else
-                    offset.set(100, 100);
-            }
-            
-            ofPushStyle();
-            ofSetColor(ofColor::black, 255 - bindTexAlpha);
-            ofDrawLine(p, p + offset);
-            ofDrawCircle(p, 4);
-            ofSetColor(ofColor::white, 255 - bindTexAlpha);
-            ofDrawCircle(p, 2);
-            ofPopStyle();
-            
-            ofPushStyle();
-            ofColor bCol(ofColor::black, 255 - bindTexAlpha);
-            ofColor fCol(ofColor::white, 255 - bindTexAlpha);
-            ofDrawBitmapStringHighlight(ofToString(p.x), p + offset, bCol, fCol);
-            ofPopStyle();
-        }
-    }
 }

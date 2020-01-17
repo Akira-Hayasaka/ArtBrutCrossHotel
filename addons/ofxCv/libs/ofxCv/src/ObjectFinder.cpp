@@ -3,6 +3,7 @@
 
 namespace ofxCv {
 	using namespace cv;
+	using namespace std;
 
 	ObjectFinder::ObjectFinder()
 	:rescale(1)
@@ -15,7 +16,7 @@ namespace ofxCv {
 	,findBiggestObject(false)
 	{
 	}
-	void ObjectFinder::setup(string cascadeFilename) {
+	void ObjectFinder::setup(std::string cascadeFilename) {
 		cascadeFilename = ofToDataPath(cascadeFilename);
 		if(ofFile(cascadeFilename).exists()) {
 			classifier.load(cascadeFilename);

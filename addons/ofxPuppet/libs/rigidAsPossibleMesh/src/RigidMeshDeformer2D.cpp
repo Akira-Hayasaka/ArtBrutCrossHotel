@@ -246,7 +246,7 @@ void RigidMeshDeformer2D::UpdateDeformedMesh( ofMesh * pMesh, bool bRigid )
 		vNewPos.y=  pMesh->getVertices()[i].y;
 		//cout << "setting update " << vNewPos.x<< " " << vNewPos.y<< endl;
 		
-        pMesh->getVertices()[i].set( ofPoint(m_vDeformedVerts[i].vPosition.x, m_vDeformedVerts[i].vPosition.y, 0.0f ));
+		pMesh->getVertices()[i] = glm::vec3(m_vDeformedVerts[i].vPosition.x, m_vDeformedVerts[i].vPosition.y, 0.0f);
         
         //Wml::Vector3f( vNewPos.x, vNewPos.y, 0.0f ) );
 	}

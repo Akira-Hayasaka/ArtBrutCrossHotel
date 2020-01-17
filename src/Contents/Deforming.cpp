@@ -75,8 +75,11 @@ void Deforming::update()
 
 void Deforming::draw()
 {
+	ofPushStyle();
+	ofSetColor(ofColor::black);
     deformTo->draw(rot);
     restoreFrom->draw(rot);
+	ofPopStyle();
 }
 
 int Deforming::getRdmIdx()

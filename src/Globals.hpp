@@ -17,6 +17,8 @@ namespace Globals
     extern ofTexture testTex;
     
     extern ofEvent<void> fadeout;
+
+	extern vector<ofFbo> morphSequence;
     
     // params
     extern ofParameter<float> minArea, maxArea, threshold;
