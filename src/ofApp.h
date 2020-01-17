@@ -7,9 +7,9 @@
 #include "ofxLayer.h"
 #include "ofxPostGlitch.h"
 
+#include "Globals.h"
 #include "Utils.h"
 #include "Constants.h"
-#include "Globals.hpp"
 
 #include "GUI.hpp"
 #include "Deforming.hpp"

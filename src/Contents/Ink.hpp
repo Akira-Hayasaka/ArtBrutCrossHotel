@@ -14,7 +14,7 @@
 #include "ofxTweenzor.h"
 
 #include "Constants.h"
-#include "Globals.hpp"
+#include "Globals.h"
 #include "Utils.h"
 
 class Ink
@@ -50,7 +50,7 @@ private:
     vector<ofColor> colors;
 
     const int maxStroke = 30;
-    const float strokeInterval = 0.75;
+    const float strokeInterval = 0.45;
     int numStroke;
     float lastStrokeTime;
     float fadeOutTime;

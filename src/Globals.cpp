@@ -6,11 +6,18 @@
 //
 //
 
-#include "Globals.hpp"
+#include "Globals.h"
 
+Proto::Proto()
+{
+	v.resize(10);
+	ofxSubscribeOsc(13000, "/proto_values", v);
+
+}
 namespace Globals
 {
     float ELAPSED_TIME;
+	Proto::Ref proto;
     vector<ofFbo> morphSequence;
     ofTexture testTex;
     

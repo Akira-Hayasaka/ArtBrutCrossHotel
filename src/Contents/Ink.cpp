@@ -104,7 +104,7 @@ void Ink::clear()
 void Ink::fadeOut()
 {
     state = FADING;
-    Tweenzor::add(&circleRad, circleRad, 1920*0.65, 0.0f, 4.0f, EASE_OUT_CUBIC);
+    Tweenzor::add(&circleRad, circleRad, 1920*0.65, 0.0f, 1.0f, EASE_OUT_CUBIC);
     Tweenzor::addCompleteListener(Tweenzor::getTween(&circleRad), this, &Ink::onEndFadeOut);
 }
 
@@ -122,7 +122,7 @@ void Ink::onEndFadeOut(float* arg)
 void Ink::judgeDrawable()
 {
     if (state == DONEFADE &&
-        Globals::ELAPSED_TIME - fadeOutTime > 1.0)
+        Globals::ELAPSED_TIME - fadeOutTime > 0.25)
     {
         state = DRAWABLE;
         c = colors.at(ofRandom(colors.size()));

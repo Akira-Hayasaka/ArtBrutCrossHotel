@@ -8,6 +8,7 @@ void ofApp::setup()
     ofSetCircleResolution(30);
     
     Globals::ELAPSED_TIME = ofGetElapsedTimef();
+	Globals::proto = make_shared<Proto>();
     
     Tweenzor::init();
     
@@ -78,7 +79,7 @@ void ofApp::draw()
     
     gui.draw();
     
-    ofDrawBitmapStringHighlight("fps: " + ofToString(ofGetFrameRate(), 2), 10, ofGetHeight() - 20);
+    //ofDrawBitmapStringHighlight("fps: " + ofToString(ofGetFrameRate(), 2), 10, ofGetHeight() - 20);
 }
 
 void ofApp::keyPressed(int key)

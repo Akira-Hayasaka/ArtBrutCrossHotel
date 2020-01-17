@@ -1,6 +1,7 @@
 ofxGui
 ofxInkSim
 ofxOpenCv
+ofxOsc
 ofxXmlSettings
 addons/ofxCv
 addons/ofxPuppet
@@ -8,3 +9,4 @@ addons/ofxTriangleMesh
 addons/ofxLayer
 addons/ofxTweenzor
 addons/ofxPostGlitch
+addons/ofxPubSubOsc

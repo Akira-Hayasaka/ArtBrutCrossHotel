@@ -13,7 +13,7 @@
 #include "ofxLayer.h"
 
 #include "Utils.h"
-#include "Globals.hpp"
+#include "Globals.h"
 #include "Deformer.hpp"
 
 using namespace ofxLayer;

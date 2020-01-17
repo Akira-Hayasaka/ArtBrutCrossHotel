@@ -14,7 +14,7 @@
 #include "ofxInkSim.h"
 
 #include "Constants.h"
-#include "Globals.hpp"
+#include "Globals.h"
 
 class GUI
 {

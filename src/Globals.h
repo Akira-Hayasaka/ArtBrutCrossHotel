@@ -1,5 +1,5 @@
 //
-//  Globals.hpp
+//  Globals.h
 //  ArtBrutCrossHotel
 //
 //  Created by Akira Hayasaka on 2016/12/30.
@@ -10,10 +10,19 @@
 #define Globals_hpp
 
 #include "ofMain.h"
+#include "ofxPubSubOsc.h"
+
+struct Proto
+{
+	using Ref = shared_ptr<Proto>;
+	Proto();
+	vector<float> v;
+};
 
 namespace Globals
 {
     extern float ELAPSED_TIME;
+	extern Proto::Ref proto;
     extern ofTexture testTex;
     
     extern ofEvent<void> fadeout;

@@ -10,6 +10,7 @@
 #define Logo_hpp
 
 #include "ofMain.h"
+#include "Globals.h"
 
 class Logo
 {

@@ -10,7 +10,7 @@
 
 void Logo::setup()
 {
-    fontBig.load("fonts/hirakakuW4.otf", 50);
+    fontBig.load("fonts/hirakakuW4.otf", 40);
     fontSmall.load("fonts/hirakakuW4.otf", 30);
 }
 
@@ -25,9 +25,9 @@ void Logo::draw()
     ofTranslate(330, 780);
     ofPushStyle();
     ofSetColor(ofColor::black);
-	fontBig.drawString("BORDERLESS ART", 0, 0);
-    fontSmall.drawString("IN", -133, 70);
-	fontBig.drawString("SCARTS", -13, 120);
+	fontBig.drawString("BORDERLESS ART", -265, 99);
+    fontSmall.drawString("IN", 202, 152);
+	fontBig.drawString("SCARTS", 16, 219);
     ofPopStyle();
     ofPopMatrix();
 }

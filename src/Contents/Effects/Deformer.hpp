@@ -11,7 +11,7 @@
 
 #include "ofMain.h"
 #include "Constants.h"
-#include "Globals.hpp"
+#include "Globals.h"
 #include "ofxTweenzor.h"
 #include "ofxCv.h"
 #include "ofxTriangleMesh.h"

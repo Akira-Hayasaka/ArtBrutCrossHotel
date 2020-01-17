@@ -210,14 +210,17 @@ void Deformer::update()
     
     screen.begin();
     ofClear(0);
+	ofPushStyle();
+	ofSetColor(ofColor::black);
     texForBinding.getTexture().bind();
     puppetWarp.getDeformedMesh().draw();
     texForBinding.getTexture().unbind();
-    
+	ofPopStyle();
+
     if (type == RESTORE)
     {
         ofPushStyle();
-        ofSetColor(ofColor::white, (255 - bindTexAlpha) * 0.6);
+        ofSetColor(ofColor::black, (255 - bindTexAlpha) * 0.6);
         puppetWarp.getDeformedMesh().drawWireframe();
         ofPopStyle();
         
@@ -391,7 +394,7 @@ void Deformer::draw(ofVec3f rot)
                     p.x = seqPos.x - Globals::morphSequence.at(i).getWidth() * i;
                 p.y = seqPos.y;
                 ofPushStyle();
-                ofSetColor(ofColor::white, bindTexAlpha);
+                ofSetColor(ofColor::black, bindTexAlpha);
 				Globals::morphSequence.at(i).draw(p.x, p.y);
                 ofNoFill();
                 ofSetColor(ofColor::darkGray, bindTexAlpha);

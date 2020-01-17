@@ -76,7 +76,7 @@ void Deforming::update()
 void Deforming::draw()
 {
 	ofPushStyle();
-	ofSetColor(ofColor::black);
+	//ofSetColor(ofColor::black);
     deformTo->draw(rot);
     restoreFrom->draw(rot);
 	ofPopStyle();
